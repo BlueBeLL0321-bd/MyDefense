@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace MyDefense
 {
+    // MachineGunTower를 관리하는 클래스
     public class MachineGunTower : MonoBehaviour
     {
         #region Field
@@ -15,8 +16,21 @@ namespace MyDefense
         public string enemyTag = "Enemy";
 
         // Search 타이머
-        public float searchTimer;
-        private float countdown;
+        public float searchTimer = 0.5f;
+        private float countdown = 0f;
+
+        // 터렛 헤드 회전
+        public Transform partToRotate;
+        public float turnSpeed = 5f;
+
+        // shoot 타이머
+        public float shootTimer = 1f;
+        private float shootCountdown = 0;
+
+        // bullet 발사
+        public GameObject bulletPrefab;
+        // 발사 위치
+        public Transform firePoint;
         #endregion
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,7 +63,6 @@ namespace MyDefense
             if (nearEnemy != null && minDistance <= attackRange)
             {
                 target = nearEnemy.transform;
-                Debug.Log("Find Target");
             }
             else
             {
@@ -60,16 +73,58 @@ namespace MyDefense
         // Update is called once per frame
         void Update()
         {
-            /*// 가장 가까운 적 찾기
-            countdown += Time.deltaTime;
+            // 가장 가까운 적 찾기
+            /*countdown += Time.deltaTime;
             if (countdown >= searchTimer)
             {
                 // 타이머 기능(함수) 호출
                 UpdateTarget();
 
                 // 타이머 초기화
-                countdown = 0f;*/
+                countdown = 0f;
+            }*/
+
+            // 타깃이 없으면
+            if (target == null)
+                return;
+
+            // 타깃 조준
+            LockOn();
+
+            // 타깃팅이 되면 터렛이 1초마다 1발씩 쏘기
+            // Debug.Log("Shoot!!!!!");
+            shootCountdown += Time.deltaTime;
+            if(shootCountdown >= 1)
+            {
+                // 타이머 기능 - 1발씩 쏘기
+                Shoot();
+
+                // 타이머 초기화
+                shootCountdown = 0f;
             }
+         }
+
+        private void Shoot()
+        {
+            // Debug.Log("Shoot!!!!!");
+            GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+            Bullet bullet = bulletGo.GetComponent<Bullet>();
+            if(bullet != null)
+            {
+                bullet.SetTarget(target);
+            }          
+        }
+
+        // 타깃 조준
+        void LockOn()
+        {
+            // 터렛 헤드 회전
+            Vector3 dir = target.position - this.transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(dir);
+            Quaternion lookRotation = Quaternion.Lerp(partToRotate.rotation, targetRotation, Time.deltaTime * turnSpeed);
+            Vector3 eulerRotation = lookRotation.eulerAngles; // 4자리에 3자리 구하기
+            partToRotate.rotation = Quaternion.Euler(0f, eulerRotation.y, 0f);
+        }
 
         private void OnDrawGizmosSelected()
         {
