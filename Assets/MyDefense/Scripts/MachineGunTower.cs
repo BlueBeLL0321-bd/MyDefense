@@ -104,6 +104,7 @@ namespace MyDefense
             }
          }
 
+        // 탄환 발사
         private void Shoot()
         {
             // Debug.Log("Shoot!!!!!");
