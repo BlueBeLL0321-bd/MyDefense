@@ -55,7 +55,7 @@ namespace Sample
             }
 
             // (6) 싱글톤 패턴 디자인 : 클래스 이름.객체 이름으로 접근하여 사용
-            //  SingletonTest.Instance
+            // SingletonTest.Instance
             // SingletonTest.Instance.Number = 10;
             // singletonTest = SingletonTest.Instance;
             // singletonTest.number = 10;

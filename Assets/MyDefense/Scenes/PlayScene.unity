@@ -790,6 +790,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  scrollSpeed: 3
+  scrollMin: 10
+  scrollMax: 40
+  isCannotMove: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@ namespace MyDefense
         #endregion
 
         #region Field
-        // 타일에 설치할 타워 프리팹 오브젝트
+        // 타일에 설치할 타워 프리팹 오브젝트를 저장하는 변수
         private GameObject towerToBuild;
 
         // 타워 프리팹
@@ -37,13 +37,19 @@ namespace MyDefense
         private void Start()
         {
             // 초기화
-            towerToBuild = machineGunPrefab;
+            // towerToBuild = machineGunPrefab;
         }
 
         // 타일에 설치할 타워 프리팹 오브젝트 얻어 오기
         public GameObject GetTowerToBuild()
         {
             return towerToBuild;
+        }
+
+        // 타일에 설치할 타워 프리팹 오브젝트 저장하기
+        public void SetTowerToBuild(GameObject tower)
+        {
+            towerToBuild = tower;
         }
     }
 }
