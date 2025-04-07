@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MyDefense
 {
-    // 탄환(발사체)을 관리하는 클래스
+    // 탄환(발사체)을 관리하는 클래스 - 모든 발사체의 부모 클래스
     public class Bullet : MonoBehaviour
     {
         #region Field
@@ -40,8 +40,8 @@ namespace MyDefense
             transform.Translate(dir.normalized * Time.deltaTime * moveSpeed);
         }
 
-        // 타깃을 맞추다
-        void HitTarget()
+        // 타깃을 맞추어 적을 킬 - 불렛
+        protected virtual void HitTarget()
         {
             // 타격 이펙트 효과
             GameObject effectGo = Instantiate(bulletImpactPrefab, this.transform.position, Quaternion.identity);

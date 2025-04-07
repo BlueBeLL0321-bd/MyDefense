@@ -11,5 +11,12 @@ namespace MyDefense
             Debug.Log("towerToBuild에 machineGunPrefab을 저장한다");
             BuildManager.Instance.SetTowerToBuild(BuildManager.Instance.machineGunPrefab);
         }
+
+        // RocketTowerButton 클릭 시 호출되는 함수
+        public void RocketTowerButton()
+        {
+            Debug.Log("towerToBuild에 rocketTowerPrefab을 저장한다");
+            BuildManager.Instance.SetTowerToBuild(BuildManager.Instance.rocketTowerPrefab);
+        }
     }
 }
