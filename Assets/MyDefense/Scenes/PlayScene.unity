@@ -1646,6 +1646,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093ed8b66b73c9641906faa3a6add0e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machineGunTower:
+    towerPrefab: {fileID: 3770930995546634809, guid: d13ebc74b1e489f40b730f28d851662a, type: 3}
+    cost: 100
+  rocketTower:
+    towerPrefab: {fileID: 7522276977297608975, guid: cdbf5d10f33c9184188501ec867caa59, type: 3}
+    cost: 150
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
