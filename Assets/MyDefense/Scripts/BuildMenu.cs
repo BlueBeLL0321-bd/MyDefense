@@ -13,15 +13,14 @@ namespace MyDefense
         public void MachineGunButton()
         {
             // 빌드 매니저의 towerToBuild에 machineGunPrefab을 저장한다
-            Debug.Log("towerToBuild에 machineGunPrefab을 저장한다");
-            BuildManager.Instance.SetTowerToBuild(machineGunTower.towerPrefab);
+            BuildManager.Instance.SetTowerToBuild(machineGunTower);
         }
 
         // RocketTowerButton 클릭 시 호출되는 함수
         public void RocketTowerButton()
         {
             Debug.Log("towerToBuild에 rocketTowerPrefab을 저장한다");
-            BuildManager.Instance.SetTowerToBuild(rocketTower.towerPrefab);
+            BuildManager.Instance.SetTowerToBuild(rocketTower);
         }
     }
 }

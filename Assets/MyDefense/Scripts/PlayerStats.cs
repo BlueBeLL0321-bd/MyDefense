@@ -29,6 +29,7 @@ namespace MyDefense
         {
             // 초기화
             // 초기 소지금 지급 400
+            Debug.Log("초기 소지금 400원 지급");
             money = startMoney;
         }
 

@@ -13,6 +13,8 @@ namespace MyDefense
             get { return instance; }
         }
 
+        
+
         private void Awake()
         {
             if(instance != null)
@@ -27,12 +29,9 @@ namespace MyDefense
         #endregion
 
         #region Field
-        // 타일에 설치할 타워 프리팹 오브젝트를 저장하는 변수
-        private GameObject towerToBuild;
+        // 타일에 설치할 타워 정보를 저장하는 변수
+        private TowerBluePrint towerToBuild;
 
-        // 타워 프리팹
-        // public GameObject machineGunPrefab;
-        // public GameObject rocketTowerPrefab;
         #endregion
 
         private void Start()
@@ -41,14 +40,14 @@ namespace MyDefense
             // towerToBuild = machineGunPrefab;
         }
 
-        // 타일에 설치할 타워 프리팹 오브젝트 얻어 오기
-        public GameObject GetTowerToBuild()
+        // 타일에 설치할 타워 정보를 얻어 오기
+        public TowerBluePrint GetTowerToBuild()
         {
             return towerToBuild;
         }
 
         // 타일에 설치할 타워 프리팹 오브젝트 저장하기
-        public void SetTowerToBuild(GameObject tower)
+        public void SetTowerToBuild(TowerBluePrint tower)
         {
             towerToBuild = tower;
         }
