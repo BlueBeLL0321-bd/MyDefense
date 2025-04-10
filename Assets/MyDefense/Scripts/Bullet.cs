@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace MyDefense
 {
@@ -13,6 +14,9 @@ namespace MyDefense
 
         // 타격 이펙트 프리팹
         public GameObject bulletImpactPrefab;
+
+        // 공격 대미지
+        [SerializeField] protected float attackDamage = 50f;
         #endregion
 
         public void SetTarget(Transform _target)
@@ -37,7 +41,10 @@ namespace MyDefense
                 HitTarget();
                 return;
             }
-            transform.Translate(dir.normalized * Time.deltaTime * moveSpeed);
+            transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.World);
+
+            // 타깃을 바라보며 이동하기
+            transform.LookAt(target);
         }
 
         // 타깃을 맞추어 적을 킬 - 불렛
@@ -47,11 +54,25 @@ namespace MyDefense
             GameObject effectGo = Instantiate(bulletImpactPrefab, this.transform.position, Quaternion.identity);
             Destroy(effectGo, 2f);
 
-            // 타깃 게임 오브젝트 킬
-            Destroy(target.gameObject);
+            // 타깃에게 대미지 주기
+            Damage(target);
 
             // 탄환 게임 오브젝트 킬
             Destroy(this.gameObject);
+        }
+
+        // 매개 변수로 들어온 타깃에게 대미지 주기
+        protected void Damage(Transform _target)
+        {
+            // 타깃 게임 오브젝트 킬 - 원 샷 원 킬
+            // Destroy(_target.gameObject);
+
+            // attackDamage만큼 타깃의 Health 감산
+            Enemy enemy = _target.GetComponent<Enemy>();
+            if(enemy != null)
+            {
+                enemy.TakeDamage(attackDamage);
+            }
         }
     }
 }

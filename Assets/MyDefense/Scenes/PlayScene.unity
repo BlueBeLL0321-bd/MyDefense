@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 21646933}
   - component: {fileID: 21646932}
   m_Layer: 5
-  m_Name: Canvas Overlay
+  m_Name: Canvas_Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1283,6 +1283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoney: 400
+  startLives: 10
 --- !u!4 &470390303
 Transform:
   m_ObjectHideFlags: 0
@@ -1749,6 +1750,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1519405227}
   - {fileID: 1756961466}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2197,6 +2199,7 @@ GameObject:
   - component: {fileID: 1024852979}
   - component: {fileID: 1024852981}
   - component: {fileID: 1024852980}
+  - component: {fileID: 1024852982}
   m_Layer: 5
   m_Name: PlayerBaseLife
   m_TagString: Untagged
@@ -2263,6 +2266,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024852978}
   m_CullTransparentMesh: 1
+--- !u!114 &1024852982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024852978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9c848750ecaf24a94f56d7cbb2ded1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesText: {fileID: 1397081526}
 --- !u!1 &1073944961
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,7 +2336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 150
+  m_text: 250
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2774,8 +2790,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3204,12 +3220,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519405225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 758730575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1549994457
 PrefabInstance:
@@ -3837,9 +3853,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1825695014}
   - component: {fileID: 1825695016}
+  - component: {fileID: 1825695017}
   - component: {fileID: 1825695015}
   m_Layer: 5
-  m_Name: MoneyCount
+  m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3965,6 +3982,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825695013}
   m_CullTransparentMesh: 1
+--- !u!114 &1825695017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825695013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3846f8eac2ac6404685862e632d4fb0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 1825695015}
 --- !u!1001 &1845688914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4546,6 +4576,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1270695539}
     m_Modifications:
+    - target: {fileID: 4413351443144560261, guid: 027302dcf0b69e64bbc3bf6f356ae2b6, type: 3}
+      propertyPath: moneyMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 79c4edb3c3a0b0044809286c9faf2ccb, type: 2}
     - target: {fileID: 6540952335705844246, guid: 027302dcf0b69e64bbc3bf6f356ae2b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.93
@@ -4667,11 +4701,10 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 470390303}
   - {fileID: 961352577}
   - {fileID: 2145062517}
   - {fileID: 1270695539}
   - {fileID: 758730575}
-  - {fileID: 1519405227}
   - {fileID: 21646935}
   - {fileID: 1793790615}
-  - {fileID: 470390303}

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,9 +14,12 @@ namespace MyDefense
         // 타일의 원래 색깔
         // private Color startColor;
 
-        // 마우스를 올려 놓으면 변하는 매터리얼
+        // 마우스를 올려 놓으면 변하는 매터리얼(돈이 충분할 때)
         public Material hoverMaterial;
-        // 마우스를 올려 놓으면 변하는 매터리얼
+        // 마우스를 올려 놓으면 변하는 매터리얼(돈이 부족할때)
+        public Material moneyMaterial;
+
+        // 타일의 원래 매터리얼
         private Material startMaterial;
 
         // 파일의 Renderer
@@ -29,6 +33,9 @@ namespace MyDefense
 
         // 타일에 설치한 타워의 정보
         private TowerBluePrint bluePrint;
+
+        // 타워 건설 이펙트 프리팹
+        public GameObject buildEffectPrefab;
         #endregion
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,7 +58,8 @@ namespace MyDefense
                 return;
             }
 
-            if (buildManager.GetTowerToBuild() == null)
+            // 저장된 프리팹 체크
+            if (buildManager.CannotBuild)
             {
                 Debug.Log("설치할 타워가 없습니다");
                 return;
@@ -64,16 +72,29 @@ namespace MyDefense
                 return;
             }
 
-            int buildCost = buildManager.GetTowerToBuild().cost;
+            // 타워 건설
+            BuildTower();
+        }
+
+        // 타워 건설
+        void BuildTower()
+        {
+            // 건설 비용 체크
+            if (buildManager.NotEnoughMoney)
+                return;
+
+            // 건설된 타워의 정보를 저장
+            bluePrint = buildManager.GetTowerToBuild();
 
             // 돈 계산
-            if (PlayerStats.UseMoney(buildCost))
-            {
-                bluePrint = buildManager.GetTowerToBuild();
+            PlayerStats.UseMoney(bluePrint.cost);
 
-                // Debug.Log("이 스크립트가 붙어 있는 타일 위에 터렛을 설치");
-                tower = Instantiate(buildManager.GetTowerToBuild().towerPrefab, this.transform.position, Quaternion.identity);
-            }
+            // 타일 위에 터렛을 설치
+            tower = Instantiate(bluePrint.towerPrefab, this.transform.position, Quaternion.identity);
+
+           // 건설 이펙트 생성한 후 2초 후에 킬
+           GameObject effectGo = Instantiate(buildEffectPrefab, this.transform.position, Quaternion.identity);
+           Destroy(effectGo, 2f);
 
             // 초기화 - 저장된 타워 정보를 초기화
             buildManager.SetTowerToBuild(null);
@@ -89,21 +110,30 @@ namespace MyDefense
                 return;
             }
 
-            if (buildManager.GetTowerToBuild() == null)
+            // 저장된 프리팹 체크
+            if (buildManager.CannotBuild)
             {
                 // Debug.Log("설치할 타워가 없습니다");
                 return;
             }
 
             // renderer.material.color = hoverColor;
-            renderer.material = hoverMaterial;
+
+            if (buildManager.NotEnoughMoney)
+            {
+                renderer.material = moneyMaterial;
+            }
+            else
+            {
+                renderer.material = hoverMaterial;
+            }
+
         }
 
         private void OnMouseExit()
         {
             // renderer.material = startColor;
             // renderer.material.color = Color.white;
-
             renderer.material = startMaterial;
         }
 

@@ -7,10 +7,12 @@ namespace MyDefense
     public class Rocket : Bullet
     {
         #region Field
+
         // 대미지 영역
         public float damageRange = 3.5f;
-
+        // enemy 오브젝트 태그 스트링
         public string enemyTag = "Enemy";
+
         #endregion
 
         // 타깃을 맞추어 폭발하여 대미지 영역에 있는 적 킬 - 불렛
@@ -23,11 +25,12 @@ namespace MyDefense
             // 폭발
             Explosion();
 
-            // 탄환 게임 오브젝트 킬
+            // 로켓 게임 오브젝트 킬
             Destroy(this.gameObject);
         }
 
         // 폭발 - 대미지 영역(3.5f)에 있는 적을 찾아 킬
+        // 폭발 지점으로부터 각 Enemy들과의 거리를 구하여 거리에 반비례하여 대미지 주기
         private void Explosion()
         {
             Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, damageRange);
@@ -36,7 +39,17 @@ namespace MyDefense
             {
                 if(hitCollider.tag == enemyTag)
                 {
-                    Destroy(hitCollider.gameObject);
+                    // 거리 구하기
+                    float distance = Vector3.Distance(this.transform.position, hitCollider.transform.position);
+                    // 거리 비례로 대미지 구하기
+                    float damage = attackDamage * ((damageRange - distance) / damageRange);
+
+                    Enemy enemy = hitCollider.GetComponent<Enemy>();
+                    if(enemy != null)
+                    {
+                        enemy.TakeDamage(damage);
+                    }
+
                 }
             }
         }
