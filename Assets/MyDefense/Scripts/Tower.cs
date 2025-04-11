@@ -9,8 +9,9 @@ namespace MyDefense
         // 공격 범위
         public float attackRange = 5f;
 
-        // 가장 가까운 적
-        private Transform target;
+        // 가장 가까운 적 트랜스폼
+        protected Transform target;
+        protected Enemy targetEnemy;
 
         // Enemy tag
         public string enemyTag = "Enemy";
@@ -63,15 +64,17 @@ namespace MyDefense
             if (nearEnemy != null && minDistance <= attackRange)
             {
                 target = nearEnemy.transform;
+                targetEnemy = target.GetComponent<Enemy>();
             }
             else
             {
                 target = null;
+                targetEnemy = null;
             }
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
             // 가장 가까운 적 찾기
             /*countdown += Time.deltaTime;
@@ -117,7 +120,7 @@ namespace MyDefense
         }
 
         // 타깃 조준
-        void LockOn()
+        public void LockOn()
         {
             // 터렛 헤드 회전
             Vector3 dir = target.position - this.transform.position;

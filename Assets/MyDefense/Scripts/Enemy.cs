@@ -12,9 +12,11 @@ namespace MyDefense
         // 체력 초기값
         [SerializeField] private float startHealth = 100f;
 
-
         // 이동 속도
-        public float speed = 5f;
+        public float moveSpeed = 5f;
+
+        // 이동 속도 - origin
+        private float startMoveSpeed;
 
         private Vector3 targetPosition;
         // wayPoint 오브젝트의 트랜스폼 객체
@@ -36,6 +38,8 @@ namespace MyDefense
             wayPointIndex = 0;
             target = WayPoints.wayPoints[wayPointIndex];
             health = startHealth;
+
+            startMoveSpeed = moveSpeed;
         }
 
         // Update is called once per frame
@@ -43,7 +47,7 @@ namespace MyDefense
         {
             // 이동 구현
             Vector3 dir = target.position - this.transform.position;
-            transform.Translate(dir.normalized * Time.deltaTime * speed, Space.World);
+            transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.World);
 
             // targetPosition 도착 판정
             float distance = Vector3.Distance(target.position, this.transform.position);
@@ -52,7 +56,12 @@ namespace MyDefense
                 // 다음 타깃 세팅
                 GetNextTargetPosition();
             }
+
+            // 속도 원복
+            moveSpeed = startMoveSpeed;
         }
+
+
 
         // 다음 타깃 얻어 오기
         void GetNextTargetPosition()
@@ -74,7 +83,6 @@ namespace MyDefense
         public void TakeDamage(float damage)
         {
             health -= damage;
-            Debug.Log($"Now Health : {health}");
 
             // 대미지 효과
 
@@ -100,6 +108,12 @@ namespace MyDefense
 
             // 킬
             Destroy(this.gameObject, 0f);
+        }
+
+        // 매개 변수로 입력 받은 감속률만큼 속도 감속
+        public void Slow(float rate)
+        {
+            moveSpeed = startMoveSpeed * (1- rate); 
         }
     }
 }
