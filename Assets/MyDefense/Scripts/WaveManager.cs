@@ -33,6 +33,10 @@ namespace MyDefense
         // Update is called once per frame
         void Update()
         {
+            // 게임 오버 체크
+
+
+            // 타이머 구현
             countdown += Time.deltaTime;
             if(countdown >= waveTimer)
             {
@@ -51,6 +55,9 @@ namespace MyDefense
         IEnumerator SpawnWave()
         {
             waveCount++;
+
+            // 라운드 카운트
+            PlayerStats.Rounds++;
 
             for (int i = 0; i < waveCount; i++)
             {

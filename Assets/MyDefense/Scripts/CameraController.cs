@@ -30,7 +30,11 @@ namespace MyDefense
         // Update is called once per frame
         void Update()
         {
-            // esc key를 한번 누르면 카메라 이동을 못 하게 막는다 isCannotMove = true (!isCannotMove)
+            // 게임 오버 체크
+            if (GameManager.IsGameOver)
+                return;
+            
+            /* // esc key를 한번 누르면 카메라 이동을 못 하게 막는다 isCannotMove = true (!isCannotMove)
             // esc key를 다시 한번 누르면 카메라 이동을 못 하게 막는다 isCannotMove = false (!isCannotMove)
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -39,7 +43,7 @@ namespace MyDefense
 
             // isCannotMove가 true이면 return 아래 코드를 실행하지 말라
             if (isCannotMove)
-                return;
+                return;*/
 
             // W, S, A, D 키 (또는 키보드의 상화좌우) 값을 받아
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))

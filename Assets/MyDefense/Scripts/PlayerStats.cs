@@ -18,6 +18,9 @@ namespace MyDefense
 
         // 초기 생명력
         [SerializeField] private int startLives = 10;
+
+        
+
         #endregion
 
         #region Property
@@ -33,6 +36,8 @@ namespace MyDefense
             get { return lives; }
         }
 
+        // Round 카운트
+        public static int Rounds { get; set; }
         #endregion
 
         // 소지금 초기값 400
@@ -42,6 +47,7 @@ namespace MyDefense
             // 초기 소지금 지급 400, 초기 생명 10 지급
             money = startMoney;
             lives = startLives;
+            Rounds = 0;
         }
 
         // 벌기, 쓰기, 소지금 확인 함수 만들기
@@ -83,9 +89,11 @@ namespace MyDefense
             {
                 lives = 0;
 
-                // 게임 오버
+                // 게임 오버 - 게임 오버 UI 활성화
                 Debug.Log("Game Over!!!!");
+
             }
         }
+
     }
 }
