@@ -31,11 +31,15 @@ namespace MyDefense
         // 타일에 설치한 타워 오브젝트
         private GameObject tower;
 
-        // 타일에 설치한 타워의 정보
-        private TowerBluePrint bluePrint;
+        // 타일에 설치한 타워의 정보 - 프리팹, 가격 정보
+        public TowerBluePrint bluePrint;
 
         // 타워 건설 이펙트 프리팹
         public GameObject buildEffectPrefab;
+        #endregion
+
+        #region Property
+        public bool IsUpgrade { get; private set; }
         #endregion
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,17 +62,17 @@ namespace MyDefense
                 return;
             }
 
+            // 현재 타일에 타워가 설치되었는지 체크
+            if (tower != null)
+            {
+                buildManager.SelectTile(this);
+                return;
+            }
+
             // 저장된 프리팹 체크
             if (buildManager.CannotBuild)
             {
                 Debug.Log("설치할 타워가 없습니다");
-                return;
-            }
-
-            // 현재 타일에 타워가 설치되었는지 체크
-            if (tower != null)
-            {
-                Debug.Log("타워를 설치할 수 없습니다");
                 return;
             }
 
@@ -100,6 +104,35 @@ namespace MyDefense
             buildManager.SetTowerToBuild(null);
 
             Debug.Log($"건설하고 남은 돈 : {PlayerStats.Money}");
+        }
+
+        // 타워 업그레이드
+        public void UpgradeTower()
+        {
+            // 업그레이드 비용 체크
+            if (PlayerStats.HasMoney(bluePrint.upgradeCost) == false)
+            {
+                Debug.Log("돈이 부족합니다");
+                return;
+            }
+
+            // 비용 지불
+            PlayerStats.UseMoney(bluePrint.upgradeCost);
+
+            // 기존 설치된 타워 킬
+            Destroy(tower);
+
+            IsUpgrade = true;
+
+            // 업그레이드 프리팹 설치
+            tower = Instantiate(bluePrint.upgradePrefab, this.transform.position, Quaternion.identity);
+
+            // 이펙트 - 건설 이펙트와 같은 것 사용
+            GameObject effectGo = Instantiate(buildEffectPrefab, this.transform.position, Quaternion.identity);
+            Destroy(effectGo, 2f);
+
+            // 초기화 - 저장된 타워 정보를 초기화
+            buildManager.SetTowerToBuild(null);
         }
 
         private void OnMouseEnter()

@@ -32,6 +32,11 @@ namespace MyDefense
         // 타일에 설치할 타워 정보를 저장하는 변수
         private TowerBluePrint towerToBuild;
 
+        // 타일 UI
+        public TileUI tileUI;
+
+        // 선택된 타일
+        private Tile selectTile;
         #endregion
 
         #region Property
@@ -64,6 +69,27 @@ namespace MyDefense
         public void SetTowerToBuild(TowerBluePrint tower)
         {
             towerToBuild = tower;
+        }
+
+        // 타워가 설치된 타일을 선택
+        public void SelectTile(Tile tile)
+        {
+            Debug.Log("타일을 선택하셨습니다");
+            // 이전에 선택한 타일과 지금 선택한 타일이 같으면 선택 해제
+            if(selectTile == tile)
+            {
+                DeselectTile();
+                return;
+            }
+            selectTile = tile;
+            tileUI.ShowTileUI(tile);
+        }
+
+        // 선택된 타일 해제
+        public void DeselectTile()
+        {
+            tileUI.HideTileUI();
+            selectTile = null;
         }
     }
 }

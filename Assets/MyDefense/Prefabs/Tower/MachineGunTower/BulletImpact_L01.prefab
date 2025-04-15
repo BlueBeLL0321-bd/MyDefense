@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1236052176673512135}
   - component: {fileID: 8364517087748672490}
   m_Layer: 0
-  m_Name: BulletImpact
+  m_Name: BulletImpact_L01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4847,7 +4847,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5c8fa9b79c2ee774ba00c33531c2a51a, type: 2}
+  - {fileID: 2100000, guid: e394008c382ef154686b8bb082504eec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -29,7 +29,7 @@ namespace MyDefense
         private void Start()
         {
             // 초기화
-            isGameOver = false; // 
+            isGameOver = false;
         }
 
         private void Update()
