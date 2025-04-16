@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 3458075766926266395}
   - component: {fileID: 7808915619898447345}
   m_Layer: 10
-  m_Name: LaserTower
+  m_Name: LaserTower_L01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0.22568512, a: 0.19607843}
+      key0: {r: 1, g: 0.3483723, b: 0, a: 0.19607843}
       key1: {r: 0, g: 1, b: 0.7300215, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -278,13 +278,15 @@ MonoBehaviour:
   enemyTag: Enemy
   searchTimer: 0.5
   partToRotate: {fileID: 5217354292656829954}
-  turnSpeed: 5
+  turnSpeed: 70
   shootTimer: 1
-  bulletPrefab: {fileID: 5027156330283352610, guid: 5bea8bdfbe5c1ac4a878d0d9a3e046a5, type: 3}
+  bulletPrefab: {fileID: 0}
   firePoint: {fileID: 5749438045712973755}
   lineRenderer: {fileID: 3458075766926266395}
   impactEffect: {fileID: 4175664110838563621}
   impactLight: {fileID: 312170491272391025}
+  laserDamage: 30
+  slowRate: 0.4
 --- !u!1 &2833088556004956626
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,8 +552,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4298994613108012524}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0005414659, y: 0.96274555, z: -0.0019278498, w: -0.27040172}
+  m_LocalPosition: {x: -3.1557364, y: 0.8729976, z: 6.471658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

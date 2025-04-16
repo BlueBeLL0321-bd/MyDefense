@@ -2072,7 +2072,7 @@ GameObject:
   - component: {fileID: 453029892}
   - component: {fileID: 453029891}
   m_Layer: 5
-  m_Name: UpgradeText
+  m_Name: SellText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3169,6 +3169,7 @@ MonoBehaviour:
   offset: {fileID: 1438406706}
   upgradeCost: {fileID: 760817839}
   upgradeButton: {fileID: 1771359194}
+  sellCost: {fileID: 1124278625}
 --- !u!1 &811530804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,13 +3343,13 @@ MonoBehaviour:
   rocketTower:
     towerPrefab: {fileID: 7522276977297608975, guid: cdbf5d10f33c9184188501ec867caa59, type: 3}
     cost: 250
-    upgradePrefab: {fileID: 0}
-    upgradeCost: 0
+    upgradePrefab: {fileID: 3970115387907538686, guid: 8e88d38de90eba84abf65061ef5bdac3, type: 3}
+    upgradeCost: 350
   laserTower:
     towerPrefab: {fileID: 2817062821103993584, guid: 66060da6b18082b4d8b3fb0a1fe5ad1a, type: 3}
     cost: 350
-    upgradePrefab: {fileID: 0}
-    upgradeCost: 0
+    upgradePrefab: {fileID: 9195187025972549299, guid: fe74a83f8c67e3948aa7ee742464a66e, type: 3}
+    upgradeCost: 500
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -5048,7 +5049,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1379224447}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 798805019}
+        m_TargetAssemblyTypeName: MyDefense.TileUI, Assembly-CSharp
+        m_MethodName: SellTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1379224447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5332,6 +5345,18 @@ MonoBehaviour:
       - m_Target: {fileID: 827586692}
         m_TargetAssemblyTypeName: MyDefense.BuildMenu, Assembly-CSharp
         m_MethodName: MachineGunButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 798805019}
+        m_TargetAssemblyTypeName: MyDefense.TileUI, Assembly-CSharp
+        m_MethodName: HideTileUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7341,6 +7366,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 798805019}
+        m_TargetAssemblyTypeName: MyDefense.TileUI, Assembly-CSharp
+        m_MethodName: HideTileUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1912013040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7589,6 +7626,18 @@ MonoBehaviour:
       - m_Target: {fileID: 827586692}
         m_TargetAssemblyTypeName: MyDefense.BuildMenu, Assembly-CSharp
         m_MethodName: LaserTowerButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 798805019}
+        m_TargetAssemblyTypeName: MyDefense.TileUI, Assembly-CSharp
+        m_MethodName: HideTileUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

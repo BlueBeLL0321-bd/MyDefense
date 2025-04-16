@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,7 +22,7 @@ namespace MyDefense
         private Material startMaterial;
 
         // 파일의 Renderer
-        private Renderer renderer;
+        private new Renderer renderer;
 
         // BuildManager 객체
         private BuildManager buildManager;
@@ -36,10 +35,15 @@ namespace MyDefense
 
         // 타워 건설 이펙트 프리팹
         public GameObject buildEffectPrefab;
+
+        // 타워 파는 이펙트 프리팹
+        public GameObject sellEffectPrefab;
+
         #endregion
 
         #region Property
         public bool IsUpgrade { get; private set; }
+        public static bool IsSell { get; private set; }
         #endregion
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -102,8 +106,6 @@ namespace MyDefense
 
             // 초기화 - 저장된 타워 정보를 초기화
             buildManager.SetTowerToBuild(null);
-
-            Debug.Log($"건설하고 남은 돈 : {PlayerStats.Money}");
         }
 
         // 타워 업그레이드
@@ -134,6 +136,34 @@ namespace MyDefense
             // 초기화 - 저장된 타워 정보를 초기화
             buildManager.SetTowerToBuild(null);
         }
+
+        // 타워 판매
+        public void SellTower()
+        {
+            int sellMoney = bluePrint.SellCost;
+
+            // 타워 제거(킬)
+            Destroy(tower);
+
+            // 타워 정보(프리팹, 가격 정보) 삭제
+            bluePrint = null;
+
+            // VFX, SFX
+            // 판매 이펙트 생성한 후 2초 뒤에 킬
+            GameObject effectGo = Instantiate(sellEffectPrefab, this.transform.position, Quaternion.identity);
+            Destroy(effectGo, 2f);
+
+            // 판매 대금 회수
+            PlayerStats.AddMoney(sellMoney);
+
+            IsSell = true;
+
+            if(IsSell == true)
+            {
+                IsUpgrade = false;
+            }
+        }
+
 
         private void OnMouseEnter()
         {
