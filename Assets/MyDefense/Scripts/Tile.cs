@@ -114,7 +114,6 @@ namespace MyDefense
             // 업그레이드 비용 체크
             if (PlayerStats.HasMoney(bluePrint.upgradeCost) == false)
             {
-                Debug.Log("돈이 부족합니다");
                 return;
             }
 

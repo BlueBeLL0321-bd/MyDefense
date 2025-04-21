@@ -7,6 +7,12 @@ namespace MyDefense
     public class PausedUI : MonoBehaviour
     {
         #region Field
+        // 신 페이더
+        public SceneFader fader;
+        [SerializeField]
+        private string loadToScene = "MainMenu";
+
+        // UI 오브젝트
         public GameObject pausedUI;
         #endregion
         
@@ -37,14 +43,18 @@ namespace MyDefense
 
         public void Retry()
         {
-            Time.timeScale = 1;
+            Time.timeScale = 1f;
+
             // 해당(자기 자신) 신을 다시 부른다
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);    // 신 이름으로 로드
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);    
+            fader.FadeTo(SceneManager.GetActiveScene().name);   // 신 이름으로 로드
         }
 
         public void Menu()
         {
-            Debug.Log("Go To Menu!!!");
+            Time.timeScale = 1f;
+
+            fader.FadeTo(loadToScene);
         }
     }
 }

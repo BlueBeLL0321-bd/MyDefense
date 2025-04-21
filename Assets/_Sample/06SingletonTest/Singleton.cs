@@ -30,7 +30,8 @@ namespace Sample
             return instance;
         }*/
 
-        // 생성자
+        //
+        // 자
         /*public Singleton()
         {
 

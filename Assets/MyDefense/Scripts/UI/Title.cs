@@ -1,19 +1,19 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace MyDefense
 {
     public class Title : MonoBehaviour
     {
         #region Field
-        // AnyKey UI 오브젝트
-        public GameObject anyKey;
+        public SceneFader fader;
 
         // 다음으로 이동하는 신 이름
         [SerializeField]
         private string loadToScene = "MainMenu";
+
+        // AnyKey UI 오브젝트
+        public GameObject anyKey;
 
         // AnyKey UI를 보여 주고 있는지 체크
         private bool isShow = false;
@@ -126,7 +126,7 @@ namespace MyDefense
 
         private void GoToMenu()
         {
-            SceneManager.LoadScene(loadToScene);
+            fader.FadeTo(loadToScene);
         }
 
         private void SpawnMonster()

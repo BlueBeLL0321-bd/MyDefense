@@ -4,11 +4,19 @@ using TMPro;
 
 namespace MyDefense
 {
+    // Enemy 스폰/웨이브를 관리하는 스크립트
     public class WaveManager : MonoBehaviour
     {
         #region Field
+        // 현재 게임 화면에서 살아 있는 enemy 숫자
+        public static int enemyAlive = 0;
+
+        // 웨이브 데이터 세팅
+        public Wave[] waves;
+
         // 적 프리팹
         public GameObject enemyPrefab;
+
         // 적 스폰 위치
         public Transform startPoint;
 
@@ -26,15 +34,20 @@ namespace MyDefense
         void Start()
         {
             // 초기화
-            countdown = 0f;
+            countdown = 3f;
             waveCount = 0;
+            enemyAlive = 0;
         }
 
         // Update is called once per frame
         void Update()
         {
-            // 게임 오버 체크
 
+            // 현재 맵에 enemy가 있는지 여부 체크, 스폰, 카운트다운 막는다
+            if (enemyAlive > 0)
+            {
+                return;
+            }
 
             // 타이머 구현
             countdown += Time.deltaTime;
@@ -71,6 +84,8 @@ namespace MyDefense
         // 시작 지점에 enemy 스폰
         void SpawnEnemy()
         {
+            // Enemy 카운팅
+            enemyAlive++;
             Instantiate(enemyPrefab, startPoint.position, Quaternion.identity);
         }
     }

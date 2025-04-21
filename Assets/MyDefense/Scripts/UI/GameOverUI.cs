@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEditor.UI;
 
 namespace MyDefense
 {
     public class GameOverUI : MonoBehaviour
     {
         #region Field
+        // 신 페이더
+        public SceneFader fader;
+        [SerializeField]
+        private string loadToScene = "MainMenu";
+
         public TextMeshProUGUI roundText;
         #endregion
 
@@ -25,7 +31,7 @@ namespace MyDefense
 
             Debug.Log("Retry Game!!!");
             // 해당(자기 자신) 신을 다시 부른다
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);    // 신 이름으로 로드
+            fader.FadeTo(SceneManager.GetActiveScene().name);    // 신 이름으로 로드
 
             // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  // 빌드 인덱스로 로드
         }
@@ -33,7 +39,7 @@ namespace MyDefense
         // 메뉴 버튼 클릭 시 호출
         public void Menu()
         {
-            Debug.Log("Go To Menu!!!");
+            fader.FadeTo(loadToScene);
         }
     }
 }

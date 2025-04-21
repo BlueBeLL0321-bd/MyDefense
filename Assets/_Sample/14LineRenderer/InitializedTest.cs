@@ -16,6 +16,7 @@ namespace Sample
 
         private void Update()
         {
+            
             Debug.Log($"number : {number}");
         }
     }
