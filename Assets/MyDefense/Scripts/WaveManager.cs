@@ -33,6 +33,9 @@ namespace MyDefense
 
         public TextMeshProUGUI countText;
         private int enemyCount;             // 웨이브에서 생성할 개수
+
+        // 게임 매니저
+        public GameManager gameManager;
         #endregion
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -53,15 +56,25 @@ namespace MyDefense
             {
                 // 현재 살아 있는 적의 개수 / 웨이브에서 생성할 개수
                 countText.text = enemyAlive.ToString() + "/" + enemyCount.ToString();
+                return;
             }
-            else // enemyAlive == 0
+                
+            // enemyAlive == 0
+            // 레벨 클리어 체크
+            if (waveCount >= waves.Length)
             {
-                if (waveInfo.activeSelf)
-                {
+                gameManager.LevelClear();
+                this.enabled = false;       // WaveManager 클래스의 객체 기능 비활성화
+                return;
+            }
+
+            // start UI 세팅
+            if (waveInfo.activeSelf)
+            {
                     waveInfo.SetActive(false);
                     startButton.SetActive(true);
-                }
             }
+
 
             /*// 타이머 구현
             countdown += Time.deltaTime;
@@ -100,11 +113,7 @@ namespace MyDefense
             }
 
             waveCount++;
-            if(waveCount >= waves.Length)
-            {
-                Debug.Log("WAVE CLEAR");
-                this.enabled = false;       // WaveManager 클래스의 객체 기능 비활성화
-            }
+            
         }
 
         // 시작 지점에 enemy 스폰

@@ -11,7 +11,8 @@ namespace MyDefense
 
         private void Awake()
         {
-            // 초기화
+            // 필드 초기화
+            // 자식의 개수를 가져와 웨이포인트 배열 생성
             wayPoints = new Transform[this.transform.childCount];
             for (int i = 0; i < wayPoints.Length; i++)
             {

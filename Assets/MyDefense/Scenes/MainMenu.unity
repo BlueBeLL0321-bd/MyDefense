@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 1324786215}
-  loadToScene: PlayScene
+  loadToScene: LevelSelect
 --- !u!4 &418398407
 Transform:
   m_ObjectHideFlags: 0

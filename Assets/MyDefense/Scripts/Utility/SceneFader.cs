@@ -70,14 +70,16 @@ namespace MyDefense
             }
 
             // 신 이동
-            SceneManager.LoadScene(sceneName);
+            if(sceneName != "")
+            {
+                SceneManager.LoadScene(sceneName);
+            }
         }
 
         
         // 다른 신으로 이동 시 호출
-        public void FadeTo(string sceneName)
+        public void FadeTo(string sceneName = "")
         {
-            FadeOut();
             StartCoroutine(FadeOut(sceneName));
         }
 
