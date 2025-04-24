@@ -71,8 +71,8 @@ namespace MyDefense
             // start UI 세팅
             if (waveInfo.activeSelf)
             {
-                    waveInfo.SetActive(false);
-                    startButton.SetActive(true);
+                waveInfo.SetActive(false);
+                startButton.SetActive(true);
             }
 
 

@@ -17,6 +17,7 @@ namespace MyDefense
         // 레벨 클리어
         [SerializeField]
         public int unlockLevel;
+        public GameObject LevelClearUI;
         #endregion
 
         #region Property
@@ -76,7 +77,7 @@ namespace MyDefense
             // ...
 
             // UI 보여주기, VFX, SFX 효과
-            Debug.Log("레벨 클리어");
+            LevelClearUI.SetActive(true);
         }
 
         // Cheating

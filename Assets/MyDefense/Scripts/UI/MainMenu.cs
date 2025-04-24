@@ -22,7 +22,7 @@ namespace MyDefense
         public void Quit()
         {
             // Cheating
-            PlayerPrefs.DeleteAll();
+            // PlayerPrefs.DeleteAll();
 
             // Unity 에디터에서 명령 무시, 빌드 버전에서는 구동
             Application.Quit();

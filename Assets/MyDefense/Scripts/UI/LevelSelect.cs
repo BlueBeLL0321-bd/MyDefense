@@ -13,13 +13,17 @@ namespace MyDefense
         // 레벨 선택 버튼
         public Transform contents;  // 레벨 선택 버튼들의 부모 오브젝트
         private Button[] levelButtons;
+
+        // 자동 스크롤 계산
+        public RectTransform scrollRect;
+        public RectTransform contentsRect;
+        public Scrollbar scrollbar;
         #endregion
 
         private void Start()
         {
             // 게임 실행 시 처음으로 저장된 데이터(nowLevel) 가져오기
-            // int nowLevel = PlayerPrefs.GetInt("NowLevel", 1);
-            int nowLevel = 22;
+            int nowLevel = PlayerPrefs.GetInt("NowLevel", 1);
             Debug.Log($"NowLevel : {nowLevel}");
 
         // 레벨 버튼s 초기화
@@ -29,9 +33,28 @@ namespace MyDefense
             for (int i = 0; i < levelButtons.Length; i++)
             {
                 levelButtons[i] = contents.GetChild(i).GetComponent<Button>();
-                if(i >= nowLevel)
+                if (i >= nowLevel)
                 {
                     levelButtons[i].interactable = false;
+                }
+            }
+
+            // 현재 플레이할 레벨로 자동 스크롤
+            float scrollHeight = scrollRect.rect.height;
+            float contentsHeight = 110 + (int)((levelButtons.Length - 1) / 5) * (110 + 6);
+            // 현재 스크롤량
+            float dHeight = contentsHeight - scrollHeight;
+            if(dHeight > 0)
+            {
+                // 현재 플레이할 레벨에 따른 스크롤 높이
+                float nowLevelHeight = (int)((nowLevel - 1) / 5) * (110 + 6);
+                if (nowLevelHeight < dHeight)
+                {
+                    scrollbar.value = 1 - (nowLevelHeight / dHeight);
+                }
+                else
+                {
+                    scrollbar.value = 0f;
                 }
             }
         }

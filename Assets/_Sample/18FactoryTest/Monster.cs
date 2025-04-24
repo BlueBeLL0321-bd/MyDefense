@@ -44,4 +44,29 @@ namespace Sample
             Debug.Log("Goblin Attack");
         }
     }
+
+    // 스켈레톤을 관리하는 클래스
+    public class Skeleton : Monster
+    {
+        public override void Attack()
+        {
+            Debug.Log("Skeleton Attack");
+        }
+    }
 }
+
+/*
+팩토리 패턴
+- 심플 팩토리
+
+
+
+1) 추상 팩토리 패턴
+ - 심플 팩토리 확장
+ - 여러 개의 객체가 생성
+
+2) 팩토리 메서드 패턴
+ - 심플 팩토리 확장
+ - 팩토리에서 기능 추가
+
+*/
