@@ -42,7 +42,6 @@ namespace MyDefense
                 // 레이저 효과 연산하기
                 // 이번 프레임에 주는 대미지량
                 float damage = laserDamage * Time.deltaTime;
-                Enemy enemy = target.GetComponent<Enemy>();
                 if(targetEnemy != null)
                 {
                     targetEnemy.TakeDamage(damage);

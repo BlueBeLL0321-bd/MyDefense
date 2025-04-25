@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 5762896069000719954}
   - component: {fileID: 7511347245323550137}
   - component: {fileID: 7237423429777729659}
+  - component: {fileID: 6333873621020341015}
   m_Layer: 6
   m_Name: Enemy_Tough
   m_TagString: Enemy
@@ -421,7 +422,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 350
-  moveSpeed: 3
   rewardGold: 140
   deathEffectPrefab: {fileID: 2241275199891889127, guid: 8ab6eaf0f33d0d643a6adfe604a31e90, type: 3}
   healthBarImage: {fileID: 6437993960419258835}
+--- !u!114 &6333873621020341015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9029488474265365146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d589e4562e6044a87ee6b5a96e236f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  startMoveSpeed: 3

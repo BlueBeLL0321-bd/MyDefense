@@ -11,7 +11,7 @@ namespace MyDefense
 
         // 가장 가까운 적 트랜스폼
         protected Transform target;
-        protected Enemy targetEnemy;
+        protected IDamageable targetEnemy;
 
         // Enemy tag
         public string enemyTag = "Enemy";
@@ -73,7 +73,7 @@ namespace MyDefense
             if (nearEnemy != null && minDistance <= attackRange)
             {
                 target = nearEnemy.transform;
-                targetEnemy = target.GetComponent<Enemy>();
+                targetEnemy = target.GetComponent<IDamageable>();
             }
             else
             {
