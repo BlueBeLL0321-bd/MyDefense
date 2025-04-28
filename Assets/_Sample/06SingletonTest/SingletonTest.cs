@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sample
 {
-    // MonoBehaviour를 상속받은 클래스의 
+    // MonoBehaviour를 상속받은 클래스의 싱글톤
     public class SingletonTest : MonoBehaviour
     {
         // 클래스의 인스턴스 변수를 정적(static) 변수로 선언
