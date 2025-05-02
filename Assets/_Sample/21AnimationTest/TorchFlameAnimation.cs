@@ -84,7 +84,6 @@ namespace Sample
 
             // 0.99초 대기
             yield return new WaitForSeconds(0.99f);
-
             lightMode = 0;
         }
 
